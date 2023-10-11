@@ -20,6 +20,7 @@ jobs:
         run: | 
           echo DEBUG="${{ secrets.DEBUG }}" >> .env
           echo SECRET_KEY="${{ secrets.SECRET_KEY }}" >> .env
+          echo DNS="${{ secrets.DNS }}" >> .env
           cat .env
 
       - name: Install dependencies
@@ -44,13 +45,14 @@ jobs:
           run: | 
             echo DEBUG="${{ secrets.DEBUG }}" >> .env
             echo SECRET_KEY="${{ secrets.SECRET_KEY }}" >> .env
+            echo DNS="${{ secrets.DNS }}" >> .env
             cat .env
         - name: Login to Docker Hub
           run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
 
         - name: Build and Push Docker image
           run: |
-            docker build -t docker_oc_lettings:latest .
-            docker tag docker_oc_lettings:latest glaxer/docker_oc_lettings:latest
-            docker push glaxer/docker_oc_lettings:latest
+            docker build -t glaxer/demonstration_test_1:latest .
+            docker tag glaxer/demonstration_test_1:latest glaxer/demonstration_test_1
+            docker push glaxer/demonstration_test_1:latest
 

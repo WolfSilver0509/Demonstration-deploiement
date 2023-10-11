@@ -9,9 +9,6 @@ COPY  . .
 
 COPY static /app/static
 
-# Copie du fichier. env pour les variables secretes
-COPY .env.docker .env
-
 # Installez les dépendances
 RUN pip install -r requirements.txt
 
@@ -20,8 +17,6 @@ RUN python manage.py migrate
 
 # Permet de prendre les fichier statics et les déposer dans static files
 Run python manage.py collectstatic --noinput
-
-
 
 
 # Exposez le port sur lequel l'application Django s'exécute
